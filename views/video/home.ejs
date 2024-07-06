@@ -4,13 +4,72 @@
 
 
 <div class="page-container">
+    <div class="page-upper-menu">
+
+    </div>
     <div class="page-header">
         <div class="page-title">
             <h1><%= pageTitle %></h1>
+            <h6><a href="/">SpreadChat Home</a></h6>
         </div>
     </div>
+
+    <div class="page-body">
+        <div class="page-body-header">
+            <h3>Contacts</h3>
+        </div>
+        <div class="page-body-data">
+            <ul>
+                <li>
+                    <div class="contact">
+                        <div class="contact-avatar"><img src="" alt=""></div>
+                        <div class="contact-name">
+                            <h6>Jonny O</h6>
+                        </div>
+                        <div class="contact-options">
+                            <div class="contact-option-item">
+                                <div class="option-item-data-call" data-user-id="jonnyomg">Call</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-lower-menu">
+
+    </div>
+
 </div>
 
 <script>
+    const
+        optionItemDataCall = document.querySelectorAll('.option-item-data-call')
 
+    optionItemDataCall.forEach(callBtn => {
+        callBtn.addEventListener('click', e => {
+            const
+                userId = e.target.getAttribute('data-user-id')
+
+
+            let
+                callModal = document.createElement('div'),
+                modalButton = document.createElement('a')
+
+            callModal.classList.add('call-modal')
+            modalButton.setAttribute('href', `/video/user/${userId}`)
+            modalButton.textContent = `/video/user/${userId}`
+
+
+            callModal.appendChild(modalButton)
+
+
+
+
+
+            document.body.append(callModal)
+
+            console.log(userId)
+        })
+    })
 </script>
