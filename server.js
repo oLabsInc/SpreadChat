@@ -34,4 +34,7 @@ app.use('/voice', require('./routes/voice'))
 app.use('/text', require('./routes/text'))
 
 
+
+// APP LIVES AT: https://spreadchat.onrender.com
+
 app.listen(PORT, () => { console.log(`SpreadChat running on http://localhost:${PORT}`) })

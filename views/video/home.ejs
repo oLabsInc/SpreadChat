@@ -58,7 +58,7 @@
 
             callModal.classList.add('call-modal')
             modalButton.setAttribute('href', `/video/user/${userId}`)
-            modalButton.textContent = `/video/user/${userId}`
+            modalButton.innerHTML = `<img src='./media/image/system/icon/phone/call.png' alt='Initiate Call Icon' />`
 
 
             callModal.appendChild(modalButton)

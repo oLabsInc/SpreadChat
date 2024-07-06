@@ -17,13 +17,17 @@
 
     <div class="page-body">
         <div class="page-body-header">
+            <h5>Waiting for <%= jonName %> to connect...</h5>
         </div>
         <div class="page-body-data">
             <div id="remoteFoundation">
-                <video id="remoteFeed" src="" controls playsinline></video>
+                <video class="remote-video" id="remoteFeed" src="" playsinline autoplay ></video>
+                <div class="remote-user">
+                    <span>Waiting for <br/><%= jonName %></span>
+                </div>
             </div>
             <div id="localFoundation">
-                <video id="localFeed" controls src="" muted></video>
+                <video class="local-video" id="localFeed" src="" muted autoplay ></video>
             </div>
         </div>
     </div>
