@@ -51,7 +51,7 @@
         const
             localVideo = document.getElementById('localVideo'),
             remoteVideo = document.getElementById('remoteVideo'),
-            peer = new Peer(),
+            peer = new Peer(['1020']),
             socket = io()
 
         peer.on('open', (id) => {
