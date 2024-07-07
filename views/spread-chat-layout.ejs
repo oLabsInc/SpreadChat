@@ -51,7 +51,7 @@
         const
             localVideo = document.getElementById('localVideo'),
             remoteVideo = document.getElementById('remoteVideo'),
-            peer = new Peer(['1020']),
+            peer = new Peer(),
             socket = io()
 
         peer.on('open', (id) => {
@@ -69,7 +69,7 @@
 
                 call.on('stream', (remoteStream) => {
                     remoteVideo.srcObject = remoteStream
-                    myId.style.display = 'none'
+                    myId.style.zIndex = -1000
                 })
 
                 document.getElementById('hangUpButton').disabled = false
@@ -82,7 +82,7 @@
 
                 call.on('stream', (remoteStream) => {
                     remoteVideo.srcObject = remoteStream
-                    myId.style.display = 'none'
+                    myId.style.zIndex = -1000
                 })
 
                 document.getElementById('hangUpButton').addEventListener('click', e => {
