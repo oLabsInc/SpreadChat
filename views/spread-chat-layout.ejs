@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpreadChat Video || WideSpread</title>
     <link rel="stylesheet" href="/style/spreadchat.css">
+
+    <!-- <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script> -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+
+
     <script src="/logic/spreadchat.js" defer></script>
 </head>
 <body>
@@ -14,11 +22,11 @@
 
         <div class="local-video-container">
             <h2>Your Video</h2>
-            <video id="localVideo" autoplay playsinline muted></video>
+            <video id="localVideo" src="/media/video/test/1.mp4" loop autoplay playsinline muted></video>
         </div>
         <div class="remote-video-container">
             <h2>Remote Video</h2>
-            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="remoteVideo" src="/media/video/test/6.mp4" loop autoplay playsinline muted></video>
         </div>
 
 
@@ -32,6 +40,10 @@
         </div>
 
     </div>
+
+
+
+
 
 
 </body>
