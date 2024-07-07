@@ -6,14 +6,13 @@
     <title>SpreadChat Video || WideSpread</title>
     <link rel="stylesheet" href="/style/spreadchat.css">
 
-    <!-- <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script> -->
-    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js"></script>
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
 
 
-    <script src="/logic/spreadchat.js" defer></script>
 </head>
 <body>
 
@@ -22,20 +21,24 @@
 
         <div class="local-video-container">
             <h2>Your Video</h2>
-            <video id="localVideo" src="/media/video/test/1.mp4" loop autoplay playsinline muted></video>
+            <video id="localVideo" autoplay playsinline muted></video>
         </div>
         <div class="remote-video-container">
             <h2>Remote Video</h2>
-            <video id="remoteVideo" src="/media/video/test/6.mp4" loop autoplay playsinline muted></video>
+            <video id="remoteVideo" autoplay playsinline></video>
         </div>
 
 
         <div class="call-controls">
             <div class="call-control">
-                <img src="/media/image/system/icon/phone/call.png" alt="Initiate Call Icon">
+                <button id="callButton">
+                    <img src="/media/image/system/icon/phone/call.png" alt="Initiate Call Icon">
+                </button>
             </div>
             <div class="call-control">
-                <img src="/media/image/system/icon/phone/call-end.png" alt="End Call Icon">
+                <button id="hangUpButton">
+                    <img src="/media/image/system/icon/phone/call-end.png" alt="End Call Icon">
+                </button>
             </div>
         </div>
 
@@ -44,7 +47,59 @@
 
 
 
+    <script>
+        const
+            localVideo = document.getElementById('localVideo'),
+            remoteVideo = document.getElementById('remoteVideo'),
+            peer = new Peer(),
+            socket = io()
 
+        peer.on('open', (id) => {
+            const myId = document.getElementById('myId')
+            localPeerId = id
+            myId.innerText = id
+        })
+
+        navigator.mediaDevices.getUserMedia({video: true, audio: true}).then((stream) => {
+            localVideo.srcObject = stream
+            localStream = stream
+
+            peer.on('call', (call) => {
+                call.answer(localStream)
+
+                call.on('stream', (remoteStream) => {
+                    remoteVideo.srcObject = remoteStream
+                    myId.style.display = 'none'
+                })
+
+                document.getElementById('hangUpButton').disabled = false
+            })
+
+            document.getElementById('callButton').addEventListener('click', e => {
+                const
+                    remotePeerId = prompt('Enter ID of remote peer'),
+                    call = peer.call(remotePeerId, localStream)
+
+                call.on('stream', (remoteStream) => {
+                    remoteVideo.srcObject = remoteStream
+                    myId.style.display = 'none'
+                })
+
+                document.getElementById('hangUpButton').addEventListener('click', e => {
+                    call.close()
+
+                    document.getElementById('hangUpButton').disabled = true
+                })
+                document.getElementById('hangUpButton').disabled = false
+            })
+
+        }).catch((error) => {
+            console.log(error)
+        })
+
+
+
+    </script>
 
 </body>
 </html>
