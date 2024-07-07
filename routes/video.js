@@ -31,7 +31,7 @@ router.get('/user/:id', async (req, res) => {
         philId = users[1].user_id,
         philLoc = users[1].location
 
-    res.render('video/chat', { pageTitle: 'SpreadChat Video - Chat Room', pageIcon: '', id, jonName, jonId, jonLoc, philName, philId, philLoc})
+    res.render('video/chat', { layout: 'spread-chat-layout', pageTitle: 'SpreadChat Video - Chat Room', pageIcon: '', id, jonName, jonId, jonLoc, philName, philId, philLoc})
 
 })
 

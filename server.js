@@ -36,5 +36,6 @@ app.use('/text', require('./routes/text'))
 
 
 // APP LIVES AT: https://spreadchat.onrender.com
+// Call me now at: https://spreadchat.onrender.com/video/user/jonnyomg
 
-app.listen(PORT, () => { console.log(`SpreadChat running on http://localhost:${PORT}`) })
+app.listen(PORT, () => { console.log(`SpreadChat running on http://localhost:${PORT}`)})
